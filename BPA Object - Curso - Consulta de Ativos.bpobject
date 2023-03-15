@@ -1,0 +1,172 @@
+﻿<process name="Curso - Consulta de Ativos" version="1.0" bpversion="7.1.2.3518" narrative="Esse objeto, tem como objetivo ler dados de ativos que serão consultados no site da B3" byrefcollection="true" type="object" runmode="Exclusive" preferredid="cf636e1a-2241-413d-af23-1f6f05d230e9">
+  <appdef>
+    <element name="Curso - Consulta de Ativos">
+      <id>8862ff19-54dd-4be8-9b92-51c6e1fd96c2</id>
+      <group name="Element1">
+        <id>c24f94a0-20a7-4625-a3cc-164176ceca18</id>
+      </group>
+      <type>Application</type>
+      <basetype>Application</basetype>
+      <datatype>unknown</datatype>
+      <diagnose>False</diagnose>
+    </element>
+    <apptypeinfo>
+      <id>BrowserLaunch</id>
+      <parameters>
+        <parameter>
+          <name>Path</name>
+          <value>C:\Program Files\Google\Chrome\Application\chrome.exe</value>
+        </parameter>
+        <parameter>
+          <name>CommandLineParams</name>
+          <value>https://www.b3.com.br/pt_br/market-data-e-indices/servicos-de-dados/market-data/cotacoes/outros-ativos.htm</value>
+        </parameter>
+        <parameter>
+          <name>ProcessMode</name>
+          <value>Internal</value>
+        </parameter>
+        <parameter>
+          <name>ExternalProcessTimeout</name>
+          <value>0</value>
+        </parameter>
+      </parameters>
+    </apptypeinfo>
+  </appdef>
+  <view>
+    <camerax>0</camerax>
+    <cameray>0</cameray>
+    <zoom version="2">1.25</zoom>
+  </view>
+  <preconditions />
+  <endpoint narrative="" />
+  <subsheet subsheetid="adaf85a9-4750-4592-bc86-eff8c0394760" type="CleanUp" published="True">
+    <name>Clean Up</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>0</cameray>
+      <zoom version="2">1.25</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="323e4084-3b8d-4782-9999-487332c14454" type="Normal" published="False">
+    <name>Launch Google Chrome</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>0</cameray>
+      <zoom version="2">1.25</zoom>
+    </view>
+  </subsheet>
+  <stage stageid="6abfeacc-9659-4f1d-aa56-c10a2b081e73" name="Start" type="Start">
+    <loginhibit />
+    <display x="15" y="-105" />
+    <onsuccess>9d89272f-1254-45be-8758-722d742e1525</onsuccess>
+  </stage>
+  <stage stageid="9d89272f-1254-45be-8758-722d742e1525" name="End" type="End">
+    <loginhibit />
+    <display x="15" y="90" />
+  </stage>
+  <stage stageid="11e2d638-8733-45e2-a36d-bd9a00e9445f" name="Stage1" type="ProcessInfo">
+    <display x="-195" y="-105" w="150" h="90" />
+    <references>
+      <reference>System.dll</reference>
+      <reference>System.Data.dll</reference>
+      <reference>System.Xml.dll</reference>
+      <reference>System.Drawing.dll</reference>
+    </references>
+    <imports>
+      <import>System</import>
+      <import>System.Drawing</import>
+      <import>System.Data</import>
+    </imports>
+    <language>visualbasic</language>
+    <globalcode><![CDATA[]]></globalcode>
+    <code><![CDATA[]]></code>
+  </stage>
+  <stage stageid="bd99f93f-e499-48ec-8763-2e8524b9a329" name="Clean Up" type="SubSheetInfo">
+    <subsheetid>adaf85a9-4750-4592-bc86-eff8c0394760</subsheetid>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="a0a3caf6-8293-4545-bb82-d658f5e300a9" name="Start" type="Start">
+    <subsheetid>adaf85a9-4750-4592-bc86-eff8c0394760</subsheetid>
+    <loginhibit />
+    <display x="15" y="-105" />
+    <onsuccess>4d26521e-6d15-4fcc-9166-a19b402a0655</onsuccess>
+  </stage>
+  <stage stageid="4d26521e-6d15-4fcc-9166-a19b402a0655" name="End" type="End">
+    <subsheetid>adaf85a9-4750-4592-bc86-eff8c0394760</subsheetid>
+    <loginhibit />
+    <display x="15" y="90" />
+  </stage>
+  <stage stageid="f81ee888-3ff3-464e-9f7b-539e23c53bea" name="Launch Google Chrome" type="SubSheetInfo">
+    <subsheetid>323e4084-3b8d-4782-9999-487332c14454</subsheetid>
+    <narrative>Launch Google Chrome</narrative>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="53fb0717-c2f3-4541-b3b2-ca951e8fa595" name="Start" type="Start">
+    <subsheetid>323e4084-3b8d-4782-9999-487332c14454</subsheetid>
+    <loginhibit />
+    <display x="15" y="-105" />
+    <onsuccess>6f4b4cd0-987d-4e20-83e8-610cf213417a</onsuccess>
+  </stage>
+  <stage stageid="67b48563-bc9e-4bc4-8b6d-a67e85592b5c" name="End" type="End">
+    <subsheetid>323e4084-3b8d-4782-9999-487332c14454</subsheetid>
+    <loginhibit />
+    <display x="15" y="15" />
+  </stage>
+  <stage stageid="a8dd37c5-f897-4672-904e-ed3a91ff3d45" name="" type="Note">
+    <subsheetid>adaf85a9-4750-4592-bc86-eff8c0394760</subsheetid>
+    <narrative>Clean Up Page
+
+This is an optional page where you might choose to perform some finalisation (or "cleanup") tasks as your business object is closed down.
+
+The cleanup action will be called automatically immediately after closing your business object at the end of a business process.
+
+You will not be able to call this action from a business process, nor will it be called at any other time than before the disposal of the business object.</narrative>
+    <display x="-180" y="60" w="180" h="230" />
+  </stage>
+  <stage stageid="0d9578d6-48af-4309-992d-ced989e3f05e" name="" type="Note">
+    <narrative>Initialise Page
+
+This is an optional page where you might choose to perform some initialisation tasks after your business object is loaded.
+
+The initialise action will be called automatically immediately after loading your business object.
+
+You will not be able to call this action from a business process, nor will it be called at any other time than after the creation of the object.</narrative>
+    <display x="-180" y="60" w="180" h="230" />
+  </stage>
+  <stage stageid="6f4b4cd0-987d-4e20-83e8-610cf213417a" name="Launch" type="Navigate">
+    <subsheetid>323e4084-3b8d-4782-9999-487332c14454</subsheetid>
+    <loginhibit />
+    <display x="15" y="-45" />
+    <onsuccess>67b48563-bc9e-4bc4-8b6d-a67e85592b5c</onsuccess>
+    <step>
+      <element id="8862ff19-54dd-4be8-9b92-51c6e1fd96c2" />
+      <action>
+        <id>Launch</id>
+        <arguments>
+          <argument>
+            <id>Path</id>
+            <value>
+            </value>
+          </argument>
+          <argument>
+            <id>CommandLineParams</id>
+            <value>
+            </value>
+          </argument>
+          <argument>
+            <id>ProcessMode</id>
+            <value>
+            </value>
+          </argument>
+        </arguments>
+        <outputs>
+          <output>
+            <id>trackingid</id>
+            <value>
+            </value>
+          </output>
+        </outputs>
+      </action>
+    </step>
+  </stage>
+</process>
