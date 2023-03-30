@@ -1,0 +1,582 @@
+﻿<process name="Consulta de ATIVOS" version="1.0" bpversion="7.1.2.3518" narrative="O Process consiste em consultar dados de ativos como preço, oscilação, entre outros, no site da B3. Escrever esses Dados em um Escel, salvar em uma pasta e enviar por e-mail&#xD;&#xA;&#xD;&#xA;Aprendi a gerenciar INPUT e OUTPUT dentro das VBOs e isso faz com que conseguimos transitar dados entre VBO e PROCESS" byrefcollection="true" preferredid="e713fef4-fcaf-4401-87ae-da9614b2a393">
+  <view>
+    <camerax>-96</camerax>
+    <cameray>18</cameray>
+    <zoom version="2">1.25</zoom>
+  </view>
+  <preconditions />
+  <endpoint narrative="" />
+  <subsheet subsheetid="adbcd039-8b9e-4bc5-9d30-1a3eb6ace48c" type="Normal" published="False">
+    <name>Popular Fila</name>
+    <view>
+      <camerax>-90</camerax>
+      <cameray>63</cameray>
+      <zoom version="2">1.25</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="917a2da9-6f97-4383-997f-02d89c24091f" type="Normal" published="False">
+    <name>Startup</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>0</cameray>
+      <zoom version="2">1.25</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="963a26e6-9bd9-4ee0-bf7b-18f4bea40759" type="Normal" published="False">
+    <name>Lê Dados de Ativos</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>0</cameray>
+      <zoom version="2">1.25</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="f3d262b8-52ff-47f7-a657-00aa767b326a" type="Normal" published="False">
+    <name>Escrever Dados de Ativos no Excel</name>
+    <view>
+      <camerax>71</camerax>
+      <cameray>3</cameray>
+      <zoom version="2">1.25</zoom>
+    </view>
+  </subsheet>
+  <stage stageid="8ac73029-ca2e-439e-bc94-4c9f72010b05" name="Start" type="Start">
+    <display x="15" y="-180" />
+    <onsuccess>18d82e7c-b491-4864-a904-9d3f2a84f23c</onsuccess>
+  </stage>
+  <stage stageid="8ca362c1-61e4-470b-946c-fbcf7a5229bf" name="End" type="End">
+    <display x="15" y="150" />
+  </stage>
+  <stage stageid="bdb3e2ce-ecba-4ad2-bf2f-ddd28e4a4e5e" name="Stage1" type="ProcessInfo">
+    <display x="-195" y="-105" w="150" h="180" />
+  </stage>
+  <stage stageid="ea8daf48-c395-423a-bd34-1ac93ce2b273" name="Popular Fila" type="SubSheetInfo">
+    <subsheetid>adbcd039-8b9e-4bc5-9d30-1a3eb6ace48c</subsheetid>
+    <narrative>Abre o Excel de Ativos, captura os dados importando para o robô e adicionando-os á fila/queue</narrative>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="a2da4d6a-2337-428c-83ff-9c855c7e94af" name="Start" type="Start">
+    <subsheetid>adbcd039-8b9e-4bc5-9d30-1a3eb6ace48c</subsheetid>
+    <display x="15" y="-135" />
+    <onsuccess>00d9d950-dce2-405c-954f-896676c02dd3</onsuccess>
+  </stage>
+  <stage stageid="91c22e3d-95cf-4a10-89ed-a1e915b71570" name="End" type="End">
+    <subsheetid>adbcd039-8b9e-4bc5-9d30-1a3eb6ace48c</subsheetid>
+    <display x="15" y="240" />
+  </stage>
+  <stage stageid="18d82e7c-b491-4864-a904-9d3f2a84f23c" name="Popular Fila" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="15" y="-135" />
+    <onsuccess>47b2ea6d-9a1d-479a-b046-b8f5a715d903</onsuccess>
+    <processid>adbcd039-8b9e-4bc5-9d30-1a3eb6ace48c</processid>
+  </stage>
+  <stage stageid="00d9d950-dce2-405c-954f-896676c02dd3" name="Create Instance" type="Action">
+    <subsheetid>adbcd039-8b9e-4bc5-9d30-1a3eb6ace48c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="-75" w="90" h="30" />
+    <inputs>
+      <input type="flag" name="Enable Events" friendlyname="Enable Events" narrative="Flag to indicate that events should be enabled / disabled on the attached instance - defaulted to True" expr="" />
+    </inputs>
+    <outputs>
+      <output type="number" name="handle" friendlyname="handle" narrative="An integer which can be used to identify the created instance in subsequent actions" stage="handle" />
+    </outputs>
+    <onsuccess>cee1fbcd-54e9-40c7-a7c5-cf7ed2e46d37</onsuccess>
+    <resource object="MS Excel VBO" action="Create Instance" />
+  </stage>
+  <stage stageid="49e3d3d1-2320-4307-b276-a400093df620" name="handle" type="Data">
+    <subsheetid>adbcd039-8b9e-4bc5-9d30-1a3eb6ace48c</subsheetid>
+    <display x="-195" y="-30" w="150" h="30" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="cee1fbcd-54e9-40c7-a7c5-cf7ed2e46d37" name="Show" type="Action">
+    <subsheetid>adbcd039-8b9e-4bc5-9d30-1a3eb6ace48c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Essa Action vai mostrar o Excel</narrative>
+    <display x="15" y="-30" w="90" h="30" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance which should have its window displayed. The default of zero indicates the currently active instance." expr="[handle]" />
+    </inputs>
+    <onsuccess>2d2da374-01a3-440f-81e4-009bdb4d56fa</onsuccess>
+    <resource object="MS Excel VBO" action="Show" />
+  </stage>
+  <stage stageid="2d2da374-01a3-440f-81e4-009bdb4d56fa" name="Open Workbook" type="Action">
+    <subsheetid>adbcd039-8b9e-4bc5-9d30-1a3eb6ace48c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Essa Action vai abrir uma planilha
+
+</narrative>
+    <display x="15" y="15" w="90" h="30" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required workbook should be opened. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="File name" friendlyname="File name" narrative="The path and name of the file which should be opened." expr="[File name]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Workbook Name" friendlyname="Workbook Name" narrative="The name used by Excel to identify the workbook - usually this is the file name (without the path)." stage="Workbook Name" />
+    </outputs>
+    <onsuccess>90f96da1-1227-4853-9834-4e777dbb2447</onsuccess>
+    <resource object="MS Excel VBO" action="Open Workbook" />
+  </stage>
+  <stage stageid="e332c0a5-c545-4d8c-99df-3387b1f4ead1" name="Close All Instances" type="Action">
+    <subsheetid>adbcd039-8b9e-4bc5-9d30-1a3eb6ace48c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Essa Action vai fechar todas as Instâncias e consequentemente, nenhuma planilha aberta.
+</narrative>
+    <display x="15" y="120" w="90" h="30" />
+    <onsuccess>efc2306e-9c53-4a6f-9ff7-1cbf295b234c</onsuccess>
+    <resource object="MS Excel VBO" action="Close All Instances" />
+  </stage>
+  <stage stageid="90f96da1-1227-4853-9834-4e777dbb2447" name="Get Worksheet As Collection" type="Action">
+    <subsheetid>adbcd039-8b9e-4bc5-9d30-1a3eb6ace48c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Importação de Dados em forma de Colletion que vai pegar todas as abas do Excel como coleção </narrative>
+    <display x="15" y="75" w="90" h="30" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the worksheet which should be retrieved resides. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" friendlyname="Workbook Name" narrative="The name of the workbook which contains the sheet required. The default empty text indicates the currently active workbook on the specified instance." expr="[Workbook Name]" />
+      <input type="text" name="Worksheet Name" friendlyname="Worksheet Name" narrative="The name of the worksheet within the specified workbook which should be written to a collection. The default empty text indicates the currently active worksheet within the specified workbook." expr="" />
+      <input type="text" name="Fetch Data With Method" friendlyname="Fetch Data With Method" narrative="The method used to fetch data from cells in the worksheet. Options include Text, Value, and Value2. The default indicates Value will be used." expr="" />
+    </inputs>
+    <outputs>
+      <output type="collection" name="Data" friendlyname="Data" narrative="The collection containing the data from the specified worksheet - the column IDs will be gleaned from the first row on the sheet being retrieved." stage="Data Excel" />
+    </outputs>
+    <onsuccess>e332c0a5-c545-4d8c-99df-3387b1f4ead1</onsuccess>
+    <resource object="MS Excel VBO" action="Get Worksheet As Collection" />
+  </stage>
+  <stage stageid="00febdbd-2d9b-49ad-9729-324b9da3653a" name="Data Excel" type="Collection">
+    <subsheetid>adbcd039-8b9e-4bc5-9d30-1a3eb6ace48c</subsheetid>
+    <display x="-195" y="105" w="150" h="30" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="f9163ad4-44f6-4bd4-9f02-fdf0fed0d03c" name="Workbook Name" type="Data">
+    <subsheetid>adbcd039-8b9e-4bc5-9d30-1a3eb6ace48c</subsheetid>
+    <display x="-195" y="60" w="150" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="bcfdd9cc-a3fc-4836-ac37-bf877cbb71fa" name="File name" type="Data">
+    <subsheetid>adbcd039-8b9e-4bc5-9d30-1a3eb6ace48c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-195" y="15" w="150" h="30" />
+    <datatype>text</datatype>
+    <initialvalue xml:space="preserve">C:\Users\Pichau\RPA\Ativos.xlsx</initialvalue>
+    <alwaysinit />
+  </stage>
+  <stage stageid="efc2306e-9c53-4a6f-9ff7-1cbf295b234c" name="Add To Queue" type="Action">
+    <subsheetid>adbcd039-8b9e-4bc5-9d30-1a3eb6ace48c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>The Data collection contains the items to be added to the queue. The collection may contain single or multiple rows, with each representing an item to be added.
+
+If there is a failure during the process, the queue will be unchanged - i.e. no rows will be loaded even if the error occurred on the last one.
+
+If Defer Until is specified, the items will not be available to be worked until then. Otherwise, they are available immediately.
+
+If the queue has a key field defined, an item added has key data longer than the maximum permitted 255 characters, an error will occur</narrative>
+    <display x="15" y="180" />
+    <inputs>
+      <input type="text" name="Queue Name" friendlyname="Queue Name" narrative="The name of the queue to add items to" expr="[Queue Name]" />
+      <input type="collection" name="Data" friendlyname="Data" narrative="A collection containing the data, one row for each item to be added" expr="[Data Excel]" />
+      <input type="datetime" name="Defer Until" friendlyname="Defer Until" narrative="Optionally, the date/time the new item(s) should be deferred until" expr="" />
+      <input type="number" name="Priority" friendlyname="Priority" narrative="Optionally, the priority for the new item(s). Lower numbers represent higher priorities. The default is 0." expr="" />
+      <input type="text" name="Tags" friendlyname="Tags" narrative="Optionally, a semi-colon-separated set of tags to apply to the queue item(s)" expr="" />
+      <input type="text" name="Status" friendlyname="Status" narrative="Optionally, the initial status required of the work queue item(s) " expr="&quot;Pending&quot;" />
+      <input type="number" name="Batch Size" friendlyname="Batch Size" narrative="Optionally, the batch size to use when adding many items to the queue.  A Value of 0 will process all items in one batch.  An empty field will use the default batch size of 1000." expr="">
+        <validator type="BluePrism.AutomateProcessCore.RangeParameterValidation" parameter="0:25000" />
+      </input>
+    </inputs>
+    <outputs>
+      <output type="collection" name="Item IDs" friendlyname="Item IDs" narrative="The IDs of the items which have been added to the queue, in the order of the collection of data passed that was input" stage="" />
+    </outputs>
+    <onsuccess>91c22e3d-95cf-4a10-89ed-a1e915b71570</onsuccess>
+    <resource object="Blueprism.Automate.clsWorkQueuesActions" action="Add To Queue" />
+  </stage>
+  <stage stageid="37d4d435-8f2e-4d5f-9a08-01fa7311f5bc" name="Startup" type="SubSheetInfo">
+    <subsheetid>917a2da9-6f97-4383-997f-02d89c24091f</subsheetid>
+    <narrative>Inicializa o que for necessário para prosseguir com o processamento</narrative>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="f895952c-5a95-47a0-ac91-093ead273c59" name="Start" type="Start">
+    <subsheetid>917a2da9-6f97-4383-997f-02d89c24091f</subsheetid>
+    <display x="15" y="-105" />
+    <onsuccess>4e77f5bc-bdff-44ae-a507-b4e79daa64c4</onsuccess>
+  </stage>
+  <stage stageid="5e2ea601-93b1-419f-af90-9cf0c6dfc1ac" name="End" type="End">
+    <subsheetid>917a2da9-6f97-4383-997f-02d89c24091f</subsheetid>
+    <display x="15" y="15" />
+  </stage>
+  <stage stageid="2fe4db08-d3b4-48a8-bf20-6092630a2caa" name="Startup" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="15" y="-45" />
+    <onsuccess>087496d0-ef84-469f-b039-9dda57f37c7c</onsuccess>
+    <processid>917a2da9-6f97-4383-997f-02d89c24091f</processid>
+  </stage>
+  <stage stageid="4e77f5bc-bdff-44ae-a507-b4e79daa64c4" name="Inicializar Google Chrome" type="Action">
+    <subsheetid>917a2da9-6f97-4383-997f-02d89c24091f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Publicar todas as Pages da Object/VBO para que apareça em Action.
+
+Business Object, serve para chamar as ações da VBO para o Process
+
+</narrative>
+    <display x="15" y="-45" />
+    <onsuccess>5e2ea601-93b1-419f-af90-9cf0c6dfc1ac</onsuccess>
+    <resource object="Curso - Consulta de Ativos" action="Launch Google Chrome" />
+  </stage>
+  <stage stageid="029520af-35a6-462f-a779-b953024a0d4c" name="Lê Dados de Ativos" type="SubSheetInfo">
+    <subsheetid>963a26e6-9bd9-4ee0-bf7b-18f4bea40759</subsheetid>
+    <narrative>Lê Dados de Ativos</narrative>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="ed7cdf57-9608-4341-b4cc-332c74da16d0" name="Start" type="Start">
+    <subsheetid>963a26e6-9bd9-4ee0-bf7b-18f4bea40759</subsheetid>
+    <display x="15" y="-135" />
+    <onsuccess>5476c1dd-5ec0-4854-90d2-a3c83cdfb30d</onsuccess>
+  </stage>
+  <stage stageid="8a7bacc4-6db6-4b36-aae0-b592a1c1c69d" name="End" type="End">
+    <subsheetid>963a26e6-9bd9-4ee0-bf7b-18f4bea40759</subsheetid>
+    <display x="15" y="135" />
+  </stage>
+  <stage stageid="087496d0-ef84-469f-b039-9dda57f37c7c" name="Lê Dados de Ativos" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="15" y="0" />
+    <onsuccess>875af0e2-3745-42de-96b0-9332c81744c8</onsuccess>
+    <processid>963a26e6-9bd9-4ee0-bf7b-18f4bea40759</processid>
+  </stage>
+  <stage stageid="5476c1dd-5ec0-4854-90d2-a3c83cdfb30d" name="Escrever ativos" type="Action">
+    <subsheetid>963a26e6-9bd9-4ee0-bf7b-18f4bea40759</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Publicar todas as Pages da Object/VBO para que apareça em Action.
+
+Business Object, serve para chamar as ações da VBO para o Process
+
+O Input criado no Object, juntamente do DataItem foi salvo e consigo trazer ele aqui para o Input do Process
+
+</narrative>
+    <display x="15" y="-90" />
+    <inputs>
+      <input type="text" name="Ativo" friendlyname="Ativo" narrative="Ativo para consulta" expr="[Item Data.ATIVOS]" />
+    </inputs>
+    <onsuccess>1925c63b-f307-47a5-a865-3ea7bae25905</onsuccess>
+    <resource object="Curso - Consulta de Ativos" action="Escrever ativos" />
+  </stage>
+  <stage stageid="1925c63b-f307-47a5-a865-3ea7bae25905" name="Clica em Buscar" type="Action">
+    <subsheetid>963a26e6-9bd9-4ee0-bf7b-18f4bea40759</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="-45" />
+    <onsuccess>b9abf213-3398-4f66-9a0f-792aef73c43f</onsuccess>
+    <resource object="Curso - Consulta de Ativos" action="Clica em Buscar" />
+  </stage>
+  <stage stageid="b9abf213-3398-4f66-9a0f-792aef73c43f" name="Ler preço" type="Action">
+    <subsheetid>963a26e6-9bd9-4ee0-bf7b-18f4bea40759</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="0" />
+    <outputs>
+      <output type="text" name="Preço" friendlyname="Preço" stage="Preço" />
+    </outputs>
+    <onsuccess>e5c96dda-697b-493e-8d66-7cb4ab5562fd</onsuccess>
+    <resource object="Curso - Consulta de Ativos" action="Ler preço" />
+  </stage>
+  <stage stageid="e5c96dda-697b-493e-8d66-7cb4ab5562fd" name="Ler Oscilação" type="Action">
+    <subsheetid>963a26e6-9bd9-4ee0-bf7b-18f4bea40759</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="45" />
+    <outputs>
+      <output type="text" name="Oscilação" friendlyname="Oscilação" stage="Oscilação" />
+    </outputs>
+    <onsuccess>39220e83-bbed-43b9-8ee2-082f1ec170df</onsuccess>
+    <resource object="Curso - Consulta de Ativos" action="Ler Oscilação" />
+  </stage>
+  <stage stageid="39220e83-bbed-43b9-8ee2-082f1ec170df" name="Ler Data e Hora" type="Action">
+    <subsheetid>963a26e6-9bd9-4ee0-bf7b-18f4bea40759</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="90" />
+    <outputs>
+      <output type="text" name="Data" friendlyname="Data" stage="Data" />
+      <output type="text" name="Hora" friendlyname="Hora" stage="Hora" />
+    </outputs>
+    <onsuccess>8a7bacc4-6db6-4b36-aae0-b592a1c1c69d</onsuccess>
+    <resource object="Curso - Consulta de Ativos" action="Ler Data e Hora" />
+  </stage>
+  <stage stageid="304b26a8-193c-4147-b144-2171ac7c08e4" name="Oscilação" type="Data">
+    <subsheetid>963a26e6-9bd9-4ee0-bf7b-18f4bea40759</subsheetid>
+    <display x="-195" y="0" w="90" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="155e1b5c-2c0e-4610-ae50-5c70f29f5788" name="Data" type="Data">
+    <subsheetid>963a26e6-9bd9-4ee0-bf7b-18f4bea40759</subsheetid>
+    <display x="-195" y="30" w="90" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="ff0b3b08-ada3-433d-b04a-e40e5a15eb09" name="Hora" type="Data">
+    <subsheetid>963a26e6-9bd9-4ee0-bf7b-18f4bea40759</subsheetid>
+    <display x="-195" y="60" w="90" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="aee00dd8-d6a7-4dd1-afae-bd444c3357b8" name="Preço" type="Data">
+    <subsheetid>963a26e6-9bd9-4ee0-bf7b-18f4bea40759</subsheetid>
+    <display x="-195" y="-30" w="90" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="47b2ea6d-9a1d-479a-b046-b8f5a715d903" name="Get Next Item" type="Action">
+    <narrative>This action gets the next item to be worked from the queue, returning its details and locking it so no other case can work it.
+
+Items with higher priorities (lower numerical value) are processed first. Where the priority is the same, the next item is the one that has been in the queue the longest,  is not already locked, and is not already completed.
+
+The Item ID returned is used to make further calls to update the work status for that item. It may be empty, in which case there are no items available. This can mean either a) the queue is empty, or b) the queue is not running. This mechanism can be used to cleanly stop all processes working a particular queue at the end of the next case. Items that have a 'deferred' time set will not be returned unless that time has been reached.</narrative>
+    <display x="15" y="-90" />
+    <inputs>
+      <input type="text" name="Queue Name" friendlyname="Queue Name" narrative="The name of the queue" expr="[Queue Name]" />
+      <input type="text" name="Key Filter" friendlyname="Key Filter" narrative="Optionally, a key value to filter by. Only items with this key value will be considered." expr="" />
+      <input type="text" name="Tag Filter" friendlyname="Tag Filter" narrative="Optionally, a tag mask to filter by. This can consist of any number of tag searches - each term can be separated by a semi-colon and they are all applied to the search (ie. they are AND'ed terms not OR'ed terms). For example, &quot;Account: Joint; -Balance: Overdrawn; Card: *Visa*&quot; will include any items which match all the terms, ie. every item must have an 'Account: Joint' tag applied, no item can have a 'Balance: Overdrawn' tag applied, every item must have a tag applied which starts with 'Card: ' and then contains the text 'Visa'." expr="" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Item ID" friendlyname="Item ID" narrative="The ID of the item retrieved - empty if there are none available." stage="Item ID" />
+      <output type="collection" name="Data" friendlyname="Data" narrative="The data associated with the item - a single collection row." stage="Item Data" />
+      <output type="text" name="Status" friendlyname="Status" narrative="The status of the item." stage="Status" />
+      <output type="number" name="Attempts" friendlyname="Attempts" narrative="The number of attempts already made to work this item." stage="Attempts" />
+    </outputs>
+    <onsuccess>2fe4db08-d3b4-48a8-bf20-6092630a2caa</onsuccess>
+    <resource object="Blueprism.Automate.clsWorkQueuesActions" action="Get Next Item" />
+  </stage>
+  <stage stageid="604bf1c8-ddb4-469e-b232-9efa37b97e3a" name="Queue Name" type="Data">
+    <loginhibit onsuccess="true" />
+    <narrative>Nome da Fila</narrative>
+    <display x="-195" y="15" w="150" h="30" />
+    <datatype>text</datatype>
+    <initialvalue xml:space="preserve">B3 - Consulta de Ativos</initialvalue>
+    <alwaysinit />
+  </stage>
+  <stage stageid="09ba0da6-39a0-4cf7-afb9-253e20822fae" name="Item ID" type="Data">
+    <display x="-195" y="105" w="150" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="2c809961-f39f-4a51-adb4-186f599472d1" name="Item Data" type="Collection">
+    <display x="-195" y="60" w="150" h="30" />
+    <datatype>collection</datatype>
+    <alwaysinit />
+  </stage>
+  <stage stageid="71b682f2-479a-4c71-9837-58cf32a50d55" name="Status" type="Data">
+    <display x="-195" y="150" w="150" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="0938650d-cf58-4be5-885d-dc3d79729b1f" name="Attempts" type="Data">
+    <display x="-195" y="195" w="150" h="30" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="a500d033-80c2-4046-9d3a-7f60a2370e10" name="Mark Item as Completed" type="Action">
+    <loginhibit onsuccess="true" />
+    <narrative>Marks the item as completed, by updating the Completed timestamp and setting Locked to null. The item must be 'owned' by the calling process - i.e. it must have been retrieved using Get Next Item.</narrative>
+    <display x="15" y="90" />
+    <inputs>
+      <input type="text" name="Item ID" friendlyname="Item ID" narrative="The ID of the item to mark" expr="[Item ID]" />
+    </inputs>
+    <onsuccess>8ca362c1-61e4-470b-946c-fbcf7a5229bf</onsuccess>
+    <resource object="Blueprism.Automate.clsWorkQueuesActions" action="Mark Completed" />
+  </stage>
+  <stage stageid="8d90d624-fdb2-4a39-b4b5-b8235f899834" name="Escrever Dados de Ativos no Excel" type="SubSheetInfo">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="03478f6f-4ba8-418a-83b4-02af14890834" name="Start" type="Start">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <display x="15" y="-105" />
+    <onsuccess>59782994-defa-4f7a-8d97-4d228e5a810e</onsuccess>
+  </stage>
+  <stage stageid="8753a8a7-a866-49c4-8acc-1b10fd6dcf72" name="End" type="End">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <display x="15" y="450" />
+  </stage>
+  <stage stageid="875af0e2-3745-42de-96b0-9332c81744c8" name="Escrever Dados de Ativos no Excel" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="15" y="45" />
+    <onsuccess>a500d033-80c2-4046-9d3a-7f60a2370e10</onsuccess>
+    <processid>f3d262b8-52ff-47f7-a657-00aa767b326a</processid>
+  </stage>
+  <stage stageid="59782994-defa-4f7a-8d97-4d228e5a810e" name="Create Instance" type="Action">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="-60" w="90" h="30" />
+    <inputs>
+      <input type="flag" name="Enable Events" friendlyname="Enable Events" narrative="Flag to indicate that events should be enabled / disabled on the attached instance - defaulted to True" expr="" />
+    </inputs>
+    <outputs>
+      <output type="number" name="handle" friendlyname="handle" narrative="An integer which can be used to identify the created instance in subsequent actions" stage="handle" />
+    </outputs>
+    <onsuccess>7750679f-8ee4-4ccc-9cd6-388aba5b1f9d</onsuccess>
+    <resource object="MS Excel VBO" action="Create Instance" />
+  </stage>
+  <stage stageid="7750679f-8ee4-4ccc-9cd6-388aba5b1f9d" name="Show" type="Action">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Essa Action vai mostrar o Excel</narrative>
+    <display x="15" y="-15" w="90" h="30" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance which should have its window displayed. The default of zero indicates the currently active instance." expr="[handle]" />
+    </inputs>
+    <onsuccess>614f8143-c8c8-437e-95e7-4b6202e66925</onsuccess>
+    <resource object="MS Excel VBO" action="Show" />
+  </stage>
+  <stage stageid="614f8143-c8c8-437e-95e7-4b6202e66925" name="Open Workbook" type="Action">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Essa Action vai abrir uma planilha
+
+</narrative>
+    <display x="15" y="30" w="90" h="30" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required workbook should be opened. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="File name" friendlyname="File name" narrative="The path and name of the file which should be opened." expr="[File name]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Workbook Name" friendlyname="Workbook Name" narrative="The name used by Excel to identify the workbook - usually this is the file name (without the path)." stage="Workbook Name" />
+    </outputs>
+    <onsuccess>dabc8062-f94e-4f39-81c9-52d51d0c8738</onsuccess>
+    <resource object="MS Excel VBO" action="Open Workbook" />
+  </stage>
+  <stage stageid="dabc8062-f94e-4f39-81c9-52d51d0c8738" name="Get Ativos" type="Action">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Vai obter o valor da célula</narrative>
+    <display x="15" y="75" w="90" h="30" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance from which the required cell value should be retrieved. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Cell Reference" friendlyname="Cell Reference" narrative="The cell reference indicating which cell's value should be retrieved. An empty value indicates that the currently active cell's value should be retrieved." expr="&quot;A&quot; &amp; [Counter]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Value" friendlyname="Value" narrative="The (unformatted) value from the required cell." stage="Value" />
+    </outputs>
+    <onsuccess>3dca8fde-c02f-485a-bac1-fcf2cf04d992</onsuccess>
+    <resource object="MS Excel VBO" action="Get Cell Value" />
+  </stage>
+  <stage stageid="14eaa29c-cad1-4ac0-957e-d485184d1b70" name="Counter" type="Data">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <narrative>O Initial Value é 2, porque sempre irei começar a verificação dos ativos pela linha 2 do excel</narrative>
+    <display x="-180" y="15" w="120" h="30" />
+    <datatype>number</datatype>
+    <initialvalue>2</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="887d9931-24a6-4b36-8e1e-8144e4a250a3" name="Value" type="Data">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <display x="-180" y="-15" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="7ac8e3f5-15b6-4df5-a6eb-e24a9aa2b1f2" name="Excel" type="Block">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-255" y="-45" w="135" h="90" />
+    <font family="Segoe UI" size="10" style="Regular" color="7FB2E5" />
+  </stage>
+  <stage stageid="3dca8fde-c02f-485a-bac1-fcf2cf04d992" name="É ativo certo?" type="Decision">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <display x="15" y="120" w="90" h="30" />
+    <decision expression="[Value] = [Item Data.ATIVOS]" />
+    <ontrue>d2158914-e9db-4353-998d-547e565fffaf</ontrue>
+    <onfalse>0bbfd46c-b6e0-4be9-aea2-72416fa7cc13</onfalse>
+  </stage>
+  <stage stageid="0bbfd46c-b6e0-4be9-aea2-72416fa7cc13" name="Counter ++" type="Calculation">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Incremento</narrative>
+    <display x="135" y="120" />
+    <onsuccess>f27ef24a-1f14-453e-b9fe-49c081bbbae8</onsuccess>
+    <calculation expression="[Counter] + 1" stage="Counter" />
+  </stage>
+  <stage stageid="f27ef24a-1f14-453e-b9fe-49c081bbbae8" name="Anchor1" type="Anchor">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="135" y="75" w="10" h="10" />
+    <onsuccess>dabc8062-f94e-4f39-81c9-52d51d0c8738</onsuccess>
+  </stage>
+  <stage stageid="d2158914-e9db-4353-998d-547e565fffaf" name="Set Preço" type="Action">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="165" w="90" h="30" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required cell value should be set. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Cell Reference" friendlyname="Cell Reference" narrative="The reference on the speficied sheet identifying the cell which should be set." expr="&quot;B&quot; &amp; [Counter]" />
+      <input type="text" name="Value" friendlyname="Value" narrative="The value to which the specified cell should be set." expr="[Preço]" />
+    </inputs>
+    <onsuccess>cd21ef05-6946-4d41-9f05-c2de44532daa</onsuccess>
+    <resource object="MS Excel VBO" action="Set Cell Value" />
+  </stage>
+  <stage stageid="02448111-5995-4019-8948-9215cdbb6904" name="Save Workbook" type="Action">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="345" w="90" h="30" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the workbook which should be saved resides. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" friendlyname="Workbook Name" narrative="The name of the workbook which should be saved" expr="[Workbook Name]" />
+    </inputs>
+    <onsuccess>50a8b890-3fd9-4063-bf0a-b3ab5b6b5eee</onsuccess>
+    <resource object="MS Excel VBO" action="Save Workbook" />
+  </stage>
+  <stage stageid="50a8b890-3fd9-4063-bf0a-b3ab5b6b5eee" name="Close All Instances" type="Action">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Essa Action vai fechar todas as Instâncias e consequentemente, nenhuma planilha aberta.
+</narrative>
+    <display x="15" y="390" w="90" h="30" />
+    <onsuccess>8753a8a7-a866-49c4-8acc-1b10fd6dcf72</onsuccess>
+    <resource object="MS Excel VBO" action="Close All Instances" />
+  </stage>
+  <stage stageid="cd21ef05-6946-4d41-9f05-c2de44532daa" name="Set Oscilação" type="Action">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="210" w="90" h="30" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required cell value should be set. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Cell Reference" friendlyname="Cell Reference" narrative="The reference on the speficied sheet identifying the cell which should be set." expr="&quot;C&quot; &amp; [Counter]" />
+      <input type="text" name="Value" friendlyname="Value" narrative="The value to which the specified cell should be set." expr="[Oscilação]" />
+    </inputs>
+    <onsuccess>d24aadbe-01bc-4a44-9abb-3643dcb6556a</onsuccess>
+    <resource object="MS Excel VBO" action="Set Cell Value" />
+  </stage>
+  <stage stageid="d24aadbe-01bc-4a44-9abb-3643dcb6556a" name="Set Data" type="Action">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="255" w="90" h="30" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required cell value should be set. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Cell Reference" friendlyname="Cell Reference" narrative="The reference on the speficied sheet identifying the cell which should be set." expr="&quot;D&quot; &amp; [Counter]" />
+      <input type="text" name="Value" friendlyname="Value" narrative="The value to which the specified cell should be set." expr="[Data]" />
+    </inputs>
+    <onsuccess>c54e7e4c-8c3b-45d4-9dc1-4ac4d2f39fbe</onsuccess>
+    <resource object="MS Excel VBO" action="Set Cell Value" />
+  </stage>
+  <stage stageid="c54e7e4c-8c3b-45d4-9dc1-4ac4d2f39fbe" name="Set Hora" type="Action">
+    <subsheetid>f3d262b8-52ff-47f7-a657-00aa767b326a</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="300" w="90" h="30" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required cell value should be set. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Cell Reference" friendlyname="Cell Reference" narrative="The reference on the speficied sheet identifying the cell which should be set." expr="&quot;E&quot; &amp; [Counter]" />
+      <input type="text" name="Value" friendlyname="Value" narrative="The value to which the specified cell should be set." expr="[Hora]" />
+    </inputs>
+    <onsuccess>02448111-5995-4019-8948-9215cdbb6904</onsuccess>
+    <resource object="MS Excel VBO" action="Set Cell Value" />
+  </stage>
+</process>
